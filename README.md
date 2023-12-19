@@ -1,9 +1,4 @@
-![Blockly Games](https://raw.githubusercontent.com/wiki/google/blockly-games/title.png)
 
-Google's Blockly Games is a series of educational games that teach programming.
-It is based on the [Blockly](https://developers.google.com/blockly/) library.
-All code is free and open source.
-
-**The games are available at https://blockly.games/**
-
-**The developer's site is at https://github.com/google/blockly-games/wiki**
+### 1) Change Keyword from Python to Python3
+### 2) Then, by examining the file in the 'appengine' folder and the folder related to each game
+### 3) Next, add the relevant code for the speed feature to the 'main.js' file, and also add the code for styles to the HTML file.
