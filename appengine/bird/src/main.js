@@ -26,7 +26,7 @@ goog.require('BlocklyCode');
 goog.require('BlocklyDialogs');
 goog.require('BlocklyGames');
 goog.require('BlocklyInterface');
-
+goog.require('Slider')
 
 BlocklyGames.storageName = 'bird';
 
@@ -45,6 +45,12 @@ let pos;
 let angle;
 let currentAngle;
 let hasWorm;
+
+/**
+ * Speed Slider variable
+ */
+let speedSlider;
+
 
 /**
  * Log of duck's moves.  Recorded during execution, played back for animation.
@@ -436,6 +442,10 @@ function init() {
   BlocklyCode.importInterpreter();
   // Lazy-load the syntax-highlighting.
   BlocklyCode.importPrettify();
+
+  // get slider speed form ui and create Slider obj
+  const sliderSvg = BlocklyGames.getElementById('slider');
+  speedSlider = new Slider(10, 35, 130, sliderSvg);
 }
 
 /**
@@ -762,6 +772,7 @@ function animate() {
   }
 
   pidList.push(setTimeout(animate, stepSpeed * 5));
+  stepSpeed = 1000 * Math.pow(1 - speedSlider.getValue(), 2);
 }
 
 /**
