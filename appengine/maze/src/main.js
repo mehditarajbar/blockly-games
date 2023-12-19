@@ -28,6 +28,7 @@ goog.require('BlocklyGames');
 goog.require('BlocklyInterface');
 goog.require('Maze.Blocks');
 goog.require('Maze.html');
+goog.require('Slider')
 
 
 BlocklyGames.storageName = 'maze';
@@ -279,6 +280,17 @@ const tile_SHAPES = {
  * Milliseconds between each animation frame.
  */
 let stepSpeed;
+
+/**
+ * Speed Slider variable
+ */
+
+let speedSlider;
+/**
+ * Number of milliseconds that execution should delay.
+ * @type number
+ */
+let pause = 0;
 
 let start_;
 let finish_;
@@ -555,6 +567,10 @@ function init() {
   BlocklyCode.importInterpreter();
   // Lazy-load the syntax-highlighting.
   BlocklyCode.importPrettify();
+
+  // get slider speed form ui and create Slider obj
+  const sliderSvg = BlocklyGames.getElementById('slider');
+  speedSlider = new Slider(10, 35, 130, sliderSvg);
 }
 
 /**
@@ -1058,7 +1074,8 @@ function animate() {
     return;
   }
   BlocklyCode.highlight(action[1]);
-
+    //Apply speed
+    const stepSpeed = 1000 * Math.pow(1 - speedSlider.getValue(), 2);
   switch (action[0]) {
     case 'north':
       schedule([pegmanX, pegmanY, pegmanD * 4],
