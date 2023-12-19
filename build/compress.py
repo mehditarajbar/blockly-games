@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Compresses the files for one game into a single JavaScript file.
 #
 # Copyright 2013 Google LLC
